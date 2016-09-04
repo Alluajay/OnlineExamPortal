@@ -1,0 +1,98 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li><a href="#/dashboard">Host Dashboard</a></li>
+        <li><a href="#/examques">Exam page</a></li>
+        <li class="active">Questions</li>
+
+    </ul>
+</div>
+<br>
+<div class="row">
+        <div class="space-6"></div>
+        <div class="col-sm-10 col-sm-offset-1">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <h3 class="header blue lighter bigger pull-left">
+                            <i class="icon-coffee green">Welcome  {{name}} </i>
+                        </h3>
+                        <button ng-click="logout();" type="button" class="btn btn-info pull-right btn-lg">Logout
+                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+<div ng-controller="questionupload">
+	<div ng-form="mainform">
+<div class="container-fluid" >
+<div ng-repeat="item in items">
+    {{item.name}} {{item.lastName}}
+  </div>
+  <div ng-repeat="itemToAdd in itemsToAdd" class="jumbotron" style="padding:5px">
+  	    <table class="table table-striped table-hower">
+  	    	<tr><h3>Question no:{{ itemToAdd.sno }}</h3></tr>
+  	    	<tr>
+  	    		<td>Question:</td>
+  	    		<td><input type="text" style="width:100%" ng-model="itemToAdd.ques" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Option A:</td>
+  	    		<td><input type="text" style="width:100%" ng-model="itemToAdd.opa" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Option B:</td>
+  	    		<td><input type="text" style="width:100%" ng-model="itemToAdd.opb" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Option C:</td>
+  	    		<td><input type="text" style="width:100%" ng-model="itemToAdd.opc" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Option D:</td>
+  	    		<td><input type="text" style="width:100%" ng-model="itemToAdd.opd" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Answer:
+  	    		<select  ng-model="itemToAdd.ans" style="width:50%" >
+              <option value="a">a</option>
+              <option value="b">b</option>
+              <option value="c">c</option>
+              <option value="d">d</option>
+            </select>
+            </td>
+            <td>Question Type:
+            <select ng-model="itemToAdd.qtype" style="width:50%" >
+                <option value="one">one</option>
+                <option value="two">two</option>
+
+                </select>
+            </td>
+  	    	</tr>
+  	    	<tr>
+  	    		<td>Marks:</td>
+  	    		<td><input type="text" ng-model="itemToAdd.marks" /></td>
+  	    	</tr>
+  	    	<tr>
+  	    		
+  	    	</tr>
+    </table>
+
+
+    
+  </div>
+  <div>
+    <button ng-click="addNew()">Add new</button>
+  </div>
+  <div ng-repeat=" items in itemsToAdd">
+  	{{ items }}
+  </div>
+  
+</div>
+     <button ng-click="submit()" type="button" class="btn btn-success pull-right">SUBMIT</button> 
+</div>

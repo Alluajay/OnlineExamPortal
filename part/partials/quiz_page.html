@@ -1,0 +1,89 @@
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="ace-icon fa fa-home home-icon"></i>
+            <a href="#">Home</a>
+        </li>
+        <li><a href="#/dashboard">Dashboard</a></li>
+        <li class="active">Quiz page</li>
+    </ul>
+</div>
+<br>
+<div class="page-content">
+    <div class="row">
+        <div class="space-6"></div>
+        <div class="col-sm-10 col-sm-offset-1">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <h3 class="header blue lighter bigger pull-left">
+                            <i class="icon-coffee green">Welcome to {{name}}</i>
+                        </h3>
+                        <button ng-click="logout();" type="button" class="btn btn-danger pull-right btn-lg">Logout
+                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div ng-controller="getQuizData" >
+        {{ email }}
+          <md-progress-linear md-mode="determinate" value="{{theTime}}"></md-progress-linear>
+    <div style="font-size:25px;padding:0px" >
+        <b>Time remaining:</b><br>
+        {{hour}}:{{minutes}}:{{seconds}}
+        <br>{{tott}} <br>{{time}}   
+    </div>
+  <br>
+  
+<div>
+      <h2>Quiz Page {{ Quizname }}</h2>
+      <br>
+      
+
+<div ng-form="mainform">
+<div class="container-fluid jumbotron" >
+
+                <h3>{{ questions[index-1].sno }}){{ questions[index-1].ques }}</h3>
+        <b>
+        a)<input type="radio" name="{{ questions[index-1].sno }}"  value="a" ng-model="results[index-1]">{{ questions[index-1].opa }} 
+        <br>
+        b)<input type="radio" name="{{ questions[index-1].sno }}" value="b" ng-model="results[index-1]" >{{ questions[index-1].opb }}
+        <br>
+        c)<input  type="radio" name="{{ questions[index-1].sno }}" value="c" ng-model="results[index-1]" >{{ questions[index-1].opc }}
+        <br>
+        d)<input type="radio" name="{{ questions[index-1].sno }}" value="d" ng-model="results[index-1]" >{{ questions[index-1].opd }}
+        <br>
+    </b>
+        <div class="pull-right"><h3>Your Answer:{{ results[index-1] }}</h3>
+        </div>
+        <br>
+        </div> 
+
+             
+</div>
+      <div style="width:60%;text-align:center">
+          <button type="button" class="btn pull-left" style="width:20%"   ng-click="index = index > 1 ? index - 1 : 1">Previous</button>
+          <b>
+
+            You are at question no:{{index}}
+          </b>
+          <button type="button" class="btn pull-right" style="width:20%" ng-click="index = index < questions.length ? index + 1 : questions.length">Next</button>
+
+                  
+        </div>
+        <br><br>
+               <button ng-click="submit();" type="button" class="btn btn-danger pull-right btn-lg">Submit</button>
+          
+          
+    </div>
+</div>
+<br>
+
+
+  
+</div>
+
+<!-- /.page-content -->
