@@ -54,7 +54,8 @@ app.config(['$routeProvider',
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
-                    $rootScope.res_tab="";
+                    $rootScope.regno = results.regno;
+                    $rootScope.res_tab;
                     myService.set_user(results);
                     $location.path(nextUrl);
                 } else {

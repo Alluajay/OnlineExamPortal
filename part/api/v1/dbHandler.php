@@ -55,12 +55,14 @@ public function getSession(){
         $sess["uid"] = $_SESSION['uid'];
         $sess["name"] = $_SESSION['name'];
         $sess["email"] = $_SESSION['email'];
+        $sess["regno"] = $_SESSION['regno'];
     }
     else
     {
         $sess["uid"] = '';
         $sess["name"] = 'Guest';
         $sess["email"] = '';
+        $sess['regno'] = '';
     }
     return $sess;
 }

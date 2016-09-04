@@ -2,7 +2,7 @@
 $marks=$_POST["marks"];
 $user=$_POST["username"];
 $user_email=$_POST["email"];
-$user_rno=$_POST["rollno"];
+$user_rno=$_POST["regno"];
 $result_tab=$_POST["result_tab"];
 $response=array();
 include_once '../config.php';
@@ -15,7 +15,7 @@ if(!$conn){
 }else{
 	$query="insert into $result_tab VALUES (null,'$user',$user_rno,'$user_email',$marks)";
 	$result=mysqli_query($conn,$query);
-	if(!$result){
+	if($result){
 		$response['status']="success";
 		$response['message']="marks recorded";
 	}else{
@@ -23,7 +23,7 @@ if(!$conn){
 		$response['message']="failed to record marks";
 		}
 	}
-}
+
 
 //echo $marks" "$user" "$user_email" "$user_rno" "$result_tab;
 echo json_encode($response);

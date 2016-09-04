@@ -11,6 +11,7 @@ app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$i
     console.log(mins+""+hours+""+quizname);
 		myService.set(quizname,quiztab,hours,mins);
     $rootScope.res_tab=restab;
+    console.log($rootScope.res_tab);
 		$location.path('/quiz_page');
 	}
 });
@@ -47,9 +48,7 @@ $scope.questions=[];
     $scope.setGlobal=function(response){
       $scope.questions=response.records;
       $scope.quesarr=[$scope.questions];
-      
-      console.log($scope.questions[0].opa);
-    }
+      }
   //$scope.questions=[];
   $scope.index=1;
   $scope.pos=$scope.index-1;
@@ -71,7 +70,7 @@ $scope.questions=[];
       }
       console.log($scope.marks);
       myService.set_result($scope.marks);
-      $scope.result_data={username:$rootScope.name,marks:$scope.marks,result_tab:$rootScope.res_tab,email:$rootScope.email};
+      $scope.result_data={username:$rootScope.name,marks:$scope.marks,result_tab:$rootScope.res_tab,email:$rootScope.email,regno:$rootScope.regno};
       $http({
         method : "POST",
         url : "api/getdata/update_result.php",
