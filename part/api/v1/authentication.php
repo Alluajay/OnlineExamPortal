@@ -57,7 +57,7 @@ $app->post('/signUp', function() use ($app) {
     $isUserExists = $db->getOneRecord("select 1 from part_user where email='$email'");
     if(!$isUserExists){
         $r->student->password = passwordHash::hash($password);
-        $table_name = "user_auth";
+        $table_name = "part_user";
         $column_names = array( 'name', 'email', 'password','regno');
         $result = $db->insertIntoTable($r->student, $column_names, $table_name);
         if ($result != NULL) {

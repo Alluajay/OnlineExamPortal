@@ -47,19 +47,17 @@ $app->post('/signUp', function() use ($app) {
     verifyRequiredParams(array('email', 'name', 'password'),$r->student);
     require_once 'passwordHash.php';
     $db = new DbHandler();
-    //$phone = $r->student->phone;
     $name = $r->student->name;
     $email = $r->student->email;
-    //$address = $r->student->address;
     $password = $r->student->password;
     $dept=$r->student->dept;
     $staffid=$r->student->staffid;
     $isUserExists = $db->getOneRecord("select 1 from host_user where email='$email'");
     if(!$isUserExists){
         $r->student->password = passwordHash::hash($password);
-        $tabble_name = "host_user";
+        $table_name = "host_user";
         $column_names = array( 'name', 'email', 'password','dept','staffid');
-        $result = $db->insertIntoTable($r->student, $column_names, $tabble_name);
+        $result = $db->insertIntoTable($r->student, $column_names, $table_name);
         if ($result != NULL) {
             $response["status"] = "success";
             $response["message"] = "User account created successfully";
@@ -68,7 +66,6 @@ $app->post('/signUp', function() use ($app) {
                 session_start();
             }
             $_SESSION['uid'] = $response["uid"];
-           // $_SESSION['phone'] = $phone;
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
             echoResponse(200, $response);
