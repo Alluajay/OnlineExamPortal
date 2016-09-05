@@ -1,5 +1,5 @@
 # OnlineExamPortal
-It is a open source webApplication to conduct Online Examinations.<br>
+This is an open source webApplication to conduct Online Examinations.<br>
 Steps to setup this webapplication in you workplace.<br>
 1.Install xampp or mamp or lamp server for Windows/mac os x/linux to host your Webapp.<br>
 2.pull the source code ito your system.<br>
