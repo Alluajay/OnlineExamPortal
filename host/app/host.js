@@ -16,7 +16,6 @@ app.controller('hostctrl',function($scope,$http,myService,$location){
 		$location.path("examques");
 	};
 	$scope.resultpage=function(result_tab){
-				console.log("clicked");
 
 		myService.set_resulttab(result_tab);
 		console.log("clicked");
