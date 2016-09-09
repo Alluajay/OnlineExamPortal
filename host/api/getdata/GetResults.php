@@ -1,7 +1,7 @@
 <?php
 $result_tab=$_GET["res_tab"];
 
-include_once '../config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if(!$conn){

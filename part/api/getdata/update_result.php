@@ -5,7 +5,7 @@ $user_email=$_POST["email"];
 $user_rno=$_POST["regno"];
 $result_tab=$_POST["result_tab"];
 $response=array();
-include_once '../config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 

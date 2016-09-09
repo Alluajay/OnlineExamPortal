@@ -12,7 +12,7 @@ class dbConnect {
      * @return database connection handler
      */
     function connect() {
-        include_once '../config.php';
+        include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 
         // Connecting to mysql database
         $this->conn = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
