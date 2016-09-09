@@ -13,7 +13,7 @@ if(!$conn){
 	$response['status']="error";
 	$response['message']="error in connection";
 }else{
-	$query="insert into $result_tab VALUES (null,'$user',$user_rno,'$user_email',$marks)";
+	$query="insert into $result_tab VALUES (null,'$user','$user_rno','$user_email',$marks,null)";
 	$result=mysqli_query($conn,$query);
 	if($result){
 		$response['status']="success";

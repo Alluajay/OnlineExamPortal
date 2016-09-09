@@ -27,7 +27,8 @@ if(!$conn){
 		
 		$query="CREATE TABLE `quiz_db`.`$result_tab` (`sno` int(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,`name` varchar(40) NOT NULL,`rno` int(11) NOT NULL,
  				 `email` varchar(40) NOT NULL,
-  				`score` decimal(15,0) NOT NULL
+  				`score` decimal(15,0) NOT NULL,
+  				`created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 				)";
 		$result=mysqli_query($conn,$query);
 		if(!$result){

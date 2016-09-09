@@ -1,12 +1,12 @@
-app.controller("questionctrl",function($scope,$http,myService,toaster,Data,$location){
-console.log("questionctrl initiated");
-$scope.user=myService.get_user();
+app.controller("questionctrl",function($scope,$http,$rootScope,toaster,Data,$location){
+//console.log("questionctrl initiated");
+//$scope.user=myService.get_user();
 var index=0;
 $scope.qtable="";
 $scope.examdetails={};
 $scope.question={sno:'1',ques:'',opa:'',opb:'',opc:'',opd:'',ans:'',marks:'',qtype:''};
 
-$scope.examdetails={"name":"","description":"","conducted_by":$scope.user.name,"hours":"","mins":""};
+$scope.examdetails={"name":"","description":"","conducted_by":$rootScope.name,"hours":"","mins":""};
 $scope.createexam=function(){
 $http({
         method : "POST",
@@ -22,8 +22,9 @@ $http({
     	}).success(function(response){
         $scope.qtable=response.qtable;
         $scope.setGlobal(response);
-        myService.set_questab(response.qtable);
-    		console.log($scope.qtable);
+       // myService.set_questab(response.qtable);
+        $rootScope.question_tab=response.qtable;
+    		//console.log($rootScope.question_tab);
         		toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
                 $location.path('/quizques');
     	});
@@ -48,7 +49,7 @@ $http({
        },
       data: $scope.examdetails
       }).success(function(response){
-        console.log(response.message);
+     //   console.log(response.message);
             toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
                 $location.path('/quizques');
       });
@@ -62,8 +63,8 @@ $http({
     })
          $scope.index=$scope.itemsToAdd.length;
          angular.forEach($scope.itemsToAdd,function(item){
-          console.log(item.sno);
-          console.log(item.ques);
+      //    console.log(item.sno);
+      //    console.log(item.ques);
          });
 
   }
@@ -73,7 +74,7 @@ $scope.qtable=data.qtable;
   };
 
   $scope.submit=function(){
-    console.log($scope.qtable);
+  //  console.log($scope.qtable);
     angular.forEach($scope.itemsToAdd,function(item){
       var obj={
         "qtable":$scope.qtable
@@ -91,7 +92,7 @@ $scope.qtable=data.qtable;
        },
       data: item
       }).success(function(response){
-        console.log(response.message);
+     //   console.log(response.message);
             toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
                 $location.path('/quizques');
       });
@@ -101,11 +102,11 @@ $scope.qtable=data.qtable;
   //test
 
 });
-app.controller("questionupload",function($scope,$http,myService,toaster,Data,$location){
+app.controller("questionupload",function($scope,$rootScope,$http,toaster,Data,$location){
     $scope.questions=[];
     // test
     $scope.items = [];
-    $scope.qtable=myService.get_questab();
+    $scope.qtable=$rootScope.question_tab;
       $scope.question={sno:'1',ques:'',opa:'',opb:'',opc:'',opd:'',ans:'',marks:'',qtype:''};
 
    $scope.itemsToAdd = [$scope.question];
@@ -118,8 +119,8 @@ app.controller("questionupload",function($scope,$http,myService,toaster,Data,$lo
     })
          $scope.index=$scope.itemsToAdd.length;
          angular.forEach($scope.itemsToAdd,function(item){
-          console.log(item.sno);
-          console.log(item.ques);
+      //    console.log(item.sno);
+      //    console.log(item.ques);
          });
 
   };
@@ -130,7 +131,8 @@ app.controller("questionupload",function($scope,$http,myService,toaster,Data,$lo
     console.log($scope.qtable);
     angular.forEach($scope.itemsToAdd,function(item){
             item["qtable"]=$scope.qtable;
-            console.log(item["qtable"]);
+         //   console.log(item["qtable"]);
+         //   console.log("rootscope "+$rootScope.question_tab);
 
         $http({
         method : "POST",
@@ -144,9 +146,9 @@ app.controller("questionupload",function($scope,$http,myService,toaster,Data,$lo
        },
       data: item
       }).success(function(response){
-        console.log(response.message);
+    //    console.log(response.message);
             toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
-                $location.path('/quizques');
+                $location.path('/dashboard');
       });
          });
     

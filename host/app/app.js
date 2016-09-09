@@ -59,7 +59,9 @@ app.config(['$routeProvider',
                     $rootScope.uid = results.uid;
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
-                    myService.set_user(results);
+                    $rootScope.question_tab;
+                    $rootScope.result_tab;
+                  //  myService.set_user(results);
                 } else {
                     var nextUrl = next.$$route.originalPath;
                     if (nextUrl == '/signup' || nextUrl == '/login' ) {
@@ -72,6 +74,7 @@ app.config(['$routeProvider',
         });
     })
     .factory('myService', function() {
+        /**
         var savedData_name = {};
         var savedData_tab = {};
         var resultdata={};
@@ -137,6 +140,7 @@ app.config(['$routeProvider',
                  get_questab:get_questab
 
                 }
+                */
 
     })
 /**.config(['$httpProvider', function ($httpProvider) {

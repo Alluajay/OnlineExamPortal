@@ -1,34 +1,54 @@
 
 /* global $ */
 app.controller('getdata',function($rootScope,$scope,$http,myService,$location,$interval){
-	$http.post("api/getdata/getQuizList.php").success(function (response) {
-			/*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
-			//$scope.questions = response.records;
-			$scope.members=response.records;
+  $scope.reload=function(){
+    console.log("clicked");
+     // $location.path('/dashboard');
+      $http.post("api/getdata/getQuizList.php").success(function (response) {
+      /*After Successfully fetch the data from JSON file assigning these data to $scope object variable*/
+      //$scope.questions = response.records;
+      $scope.members=response.records;
 });
-  console.log($rootScope.name);
+
+  }
+  $scope.reload();
+	
+ // console.log($rootScope.name);
 	$scope.gotoquiz=function(quizname,quiztab,hours,mins,restab){
     console.log(mins+""+hours+""+quizname);
-		myService.set(quizname,quiztab,hours,mins);
+	//	myService.set(quizname,quiztab,hours,mins);
+    $rootScope.quiz_name=quizname;
+    $rootScope.quiz_tab=quiztab;
+    $rootScope.quiz_time_hours=hours;
+    $rootScope.quiz_time_mins=mins;
     $rootScope.res_tab=restab;
-    console.log($rootScope.res_tab);
+   // console.log($rootScope.res_tab);
 		$location.path('/quiz_page');
 	}
 });
 
-app.controller('results',function($scope,$location,myService){
-$scope.marks=myService.get_result();
+app.controller('results',function($scope,$location,myService,$rootScope,$interval){
+$scope.marks=$rootScope.result;
+$scope.time1=60;
+var timer=$interval(function () {
+            $scope.time1--;
+            if($scope.time1==0){
+              $interval.cancel(timer);
+              $location.path('/dashboard');
+            }
+   }, 1000);  
+
 
 });
 
-app.controller('getQuizData',function ($rootScope,$scope, $window ,$rootScope,myService,$http,$location,$timeout,$interval) {
-	$scope.Quizname=myService.get_name();
-	$scope.Quiztabname=myService.get_tab();
-  $scope.user=myService.get_user();
-  $scope.hour=myService.get_hours();
-  $scope.minutes=myService.get_mins();
+app.controller('getQuizData',function ($rootScope,$scope, $window ,toaster,$rootScope,myService,$http,$location,$timeout,$interval) {
+	$scope.Quizname=$rootScope.quiz_name;
+	$scope.Quiztabname=$rootScope.quiz_tab;
+  $scope.user=$rootScope.user_details;
+  $scope.hour=$rootScope.quiz_time_hours;
+  $scope.minutes=$rootScope.quiz_time_mins;
   $scope.email=$rootScope.email;
-  console.log($rootScope.email);
+ // console.log($rootScope.email);
 
 	if($scope.Quizname==null){
 		console.log("empty");
@@ -69,7 +89,8 @@ $scope.questions=[];
         }
       }
       console.log($scope.marks);
-      myService.set_result($scope.marks);
+   //   myService.set_result($scope.marks);
+      $rootScope.result=$scope.marks;
       $scope.result_data={username:$rootScope.name,marks:$scope.marks,result_tab:$rootScope.res_tab,email:$rootScope.email,regno:$rootScope.regno};
       $http({
         method : "POST",
@@ -83,12 +104,13 @@ $scope.questions=[];
        },
       data: $scope.result_data
       }).success(function(response){
-        $scope.qtable=response.qtable;
+        //$scope.qtable=response.qtable;
         $scope.setGlobal(response);
-        myService.set_questab(response.qtable);
-        console.log(response.message+$scope.qtable);
+        //myService.set_questab(response.qtable);
+        $rootScope.quiz_tab=response.qtable;
+        console.log(response.message);
             toaster.pop(response.status, "", response.message, 1000, 'trustedHtml');
-                $location.path('/quizques');
+               // $location.path('/quizques');
       });
 
       $location.path('/result');
@@ -130,7 +152,7 @@ var timer=$interval(function () {
           $interval.cancel(timer);
           $scope.submit();
         }      
-   }, 10);		   
+   }, 1000);		   
  }
  //timer ends
  	//console.log($scope.questions[0].opa);	

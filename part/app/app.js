@@ -55,8 +55,15 @@ app.config(['$routeProvider',
                     $rootScope.name = results.name;
                     $rootScope.email = results.email;
                     $rootScope.regno = results.regno;
+                    $rootScope.user_details=results;
+                    $rootScope.quiz_name;
+                    $rootScope.quiz_tab;
+                    $rootScope.quiz_time_hours;
+                    $rootScope.quiz_time_mins;
+                    $rootScope.result;
+                   // quizname,quiztab,hours,mins
                     $rootScope.res_tab;
-                    myService.set_user(results);
+                   // myService.set_user(results);
                     $location.path(nextUrl);
                 } else {
                     var nextUrl = next.$$route.originalPath;
@@ -70,6 +77,7 @@ app.config(['$routeProvider',
         });
     })
     .factory('myService', function() {
+        /**
         var savedData_name = {};
         var savedData_tab = {};
         var savedData_hours = {};
@@ -160,6 +168,7 @@ app.config(['$routeProvider',
                  set_result:set_result,
                  get_result:get_result
                 }
+                */
 
     });
 

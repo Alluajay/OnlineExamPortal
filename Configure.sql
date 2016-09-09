@@ -34,7 +34,7 @@ CREATE TABLE `quiz_db`.`part_user` (
   `email` varchar(50) NOT NULL,
   `password` varchar(200) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `regno` int(11) NOT NULL
+  `regno` varchar(20) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 --
