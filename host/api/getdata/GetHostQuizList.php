@@ -1,7 +1,7 @@
 <?php        
 include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-$host_user=$_GET["user"];
+$host_user=isset($_GET['user']) ? $_GET['user'] : '';
 if(!$conn){
 
 }else{

@@ -1,15 +1,15 @@
 <?php
 
-$sno=$_POST["sno"];
-$ques=$_POST["ques"];
-$opa=$_POST["opa"];
-$opb=$_POST["opb"];
-$opc=$_POST["opc"];
-$opd=$_POST["opd"];
-$ans=$_POST["ans"];
-$marks=$_POST["marks"];
-$qtype=$_POST["qtype"];
-$qtable=$_POST["qtable"];
+$sno=isset($_POST['sno']) ? $_POST['sno'] : '';
+$ques=isset($_POST['ques']) ? $_POST['ques'] : '';
+$opa=isset($_POST['opa']) ? $_POST['opa'] : '';
+$opb=isset($_POST['opb']) ? $_POST['opb'] : '';
+$opc=isset($_POST['opc']) ? $_POST['opc'] : '';
+$opd=isset($_POST['opd']) ? $_POST['opd'] : '';
+$ans=isset($_POST['ans']) ? $_POST['ans'] : '';
+$marks=isset($_POST['marks']) ? $_POST['marks'] : '';
+$qtype=isset($_POST['qtype']) ? $_POST['qtype'] : '';
+$qtable=isset($_POST['qtable']) ? $_POST['qtable'] : '';
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);

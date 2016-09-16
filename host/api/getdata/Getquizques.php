@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-$tab_name=$_GET["tab"];
+$tab_name=isset($_GET['tab']) ? $_GET['tab'] : ''
 //echo $tab_name;
 if(!$conn){
 echo "error in connection";

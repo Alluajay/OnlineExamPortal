@@ -1,16 +1,19 @@
 <?php
-$name=$_POST["name"];
+$name=isset($_POST['name']) ? $_POST['name'] : '';
 $randno=rand(1,9999999);
 
-$desc=$_POST["description"];
-$cond_by=$_POST["conducted_by"];
-$hours=$_POST["hours"];
-$min=$_POST["mins"];
+$desc=isset($_POST['description']) ? $_POST['description'] : '';
+$cond_by=isset($_POST['conducted_by']) ? $_POST['conducted_by'] : '';
+$hours=isset($_POST['hours']) ? $_POST['hours'] : '';
+$min = isset($_POST['min']) ? $_POST['min'] : '';
 $tab_name="quiz_list";
 $response=array();
 if($name!=''){
+
 	$ques_tab="ques_$randno";
-$result_tab="res_$randno";
+	$result_tab="res_$randno";
+
+
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
 $conn=mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -18,7 +21,7 @@ if(!$conn){
 		$response["status"]="error";
 		$response["message"]="error in connection";
 }else{
-	$query="INSERT INTO `quiz_db`.`quiz_list` (`sno`, `name`, `ques_table_link`, `descr`, `result_tab_link`, `conducted_by`,`hours`,`mins`) VALUES (NULL, '$name', '$ques_tab', '$desc', '$result_tab', '$cond_by','$hours','$mins');";
+	$query="INSERT INTO `quiz_db`.`quiz_list` (`sno`, `name`, `ques_table_link`, `descr`, `result_tab_link`, `conducted_by`,`hours`,`mins`) VALUES (NULL, '$name', '$ques_tab', '$desc', '$result_tab', '$cond_by','$hours','$min');";
 	$result=mysqli_query($conn,$query);
 	if(!$result){
 		$response["status"]="error";
@@ -53,7 +56,7 @@ if(!$conn){
 		}		
 	}
 
-}
+	}
 }else{
 	$response["status"]="error";
 	$response["message"]="data empty";

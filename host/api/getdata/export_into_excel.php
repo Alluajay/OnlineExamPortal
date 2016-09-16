@@ -1,7 +1,7 @@
 
 <?php
 
-$result_tab=$_GET["res_tab"];
+$result_tab=isset($_GET['res_tab']) ? $_GET['res_tab'] : '';
 
 // Connection
 include_once $_SERVER['DOCUMENT_ROOT'].'/exam/config.php';
