@@ -8,6 +8,7 @@ $scope.question={sno:'1',ques:'',opa:'',opb:'',opc:'',opd:'',ans:'',marks:'',qty
 
 $scope.examdetails={"name":"","description":"","conducted_by":$rootScope.name,"hours":"","mins":""};
 $scope.createexam=function(){
+  
 $http({
         method : "POST",
         url : "api/getdata/CreateNewQuiz.php",
@@ -118,10 +119,7 @@ app.controller("questionupload",function($scope,$rootScope,$http,toaster,Data,$l
       sno:$scope.itemsToAdd.length+1,ques:'',opa:'',opb:'',opc:'',opd:'',ans:'',marks:'',qtype:''
     })
          $scope.index=$scope.itemsToAdd.length;
-         angular.forEach($scope.itemsToAdd,function(item){
-      //    console.log(item.sno);
-      //    console.log(item.ques);
-         });
+        
 
   };
 
